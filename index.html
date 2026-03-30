@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>极致色情 Tag 库 · 682个完整高强度标签（纯本地离线版）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI','Microsoft YaHei',sans-serif;background:#fafafa;color:#222;line-height:1.6;padding:20px;min-height:100vh}
+.dark-mode{background:#121212;color:#e0e0e0}
+:root{--bg:#fafafa;--txt:#222;--tag:#e9ecef;--tag-h:#dee2e6;--tag-a:#ced4da;--border:#ddd;--btn:#e9ecef;--accent:#d63384}
+.dark-mode{--bg:#121212;--txt:#e0e0e0;--tag:#2d2d2d;--tag-h:#3d3d3d;--tag-a:#4d4d4d;--border:#444;--btn:#2d2d2d;--accent:#ff6ac1}
+body{background:var(--bg);color:var(--txt)}
+.container{max-width:1400px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:30px}
+.logo{display:flex;align-items:center;gap:15px}
+.logo i{font-size:38px;color:var(--accent)}
+h1{font-size:28px;font-weight:800}
+.theme-toggle{cursor:pointer;width:64px;height:34px;background:var(--btn);border:2px solid var(--border);border-radius:50px;position:relative}
+.theme-toggle .switch{position:absolute;left:4px;top:4px;width:26px;height:26px;background:#fff;border-radius:50%;transition:.3s;box-shadow:0 2px 5px rgba(0,0,0,.3)}
+.dark-mode .switch{transform:translateX(30px);background:#333}
+.input-area{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:25px;box-shadow:0 8px 25px rgba(0,0,0,.08);margin-bottom:30px}
+.input-controls{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.btn{padding:11px 22px;border-radius:12px;background:var(--btn);border:1px solid var(--border);cursor:pointer;font-weight:600;display:flex;align-items:center;gap:8px;transition:.2s}
+.btn:hover{background:var(--tag-h);transform:translateY(-2px)}
+#promptInput{width:100%;min-height:180px;padding:18px;border-radius:12px;border:1px solid var(--border);background:var(--bg);color:var(--txt);font-size:16px;resize:vertical;font-family:inherit}
+#promptInput:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(214,51,132,.15)}
+.stats{display:flex;gap:20px;margin:15px 0}
+.stat{background:var(--tag);padding:8px 16px;border-radius:30px;font-size:14px}
+.search-wrapper{position:relative;margin:25px 0}
+#searchInput{width:100%;padding:16px 50px 16px 20px;border-radius:50px;border:1px solid var(--border);background:var(--bg);font-size:16px}
+.search-icon{position:absolute;right:20px;top:50%;transform:translateY(-50%);color:var(--accent);font-size:18px}
+.tags-container{margin-top:30px}
+.tag-category{margin-bottom:20px;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--bg)}
+.category-header{padding:16px 24px;background:var(--btn);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:17px}
+.category-header:hover{background:var(--tag-h)}
+.category-header i{transition:.3s;font-size:18px}
+.category-header.active i{transform:rotate(90deg)}
+.subcategory-container{display:none;padding:20px;background:var(--bg)}
+.category-header.active + .subcategory-container{display:block}
+.tag-list{display:flex;flex-wrap:wrap;gap:11px}
+.tag{background:var(--tag);color:var(--txt);padding:9px 18px;border-radius:50px;font-size:14.5px;cursor:pointer;border:1px solid var(--border);transition:all .25s;min-width:80px;text-align:center}
+.tag:hover{background:var(--tag-h);transform:translateY(-3px)}
+.tag.active{background:var(--tag-a);border-color:var(--accent);box-shadow:0 5px 15px rgba(214,51,132,.25);font-weight:700;transform:translateY(-5px)}
+.status-bar{margin-top:20px;padding:18px;background:var(--tag);border-radius:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:15px;border-left:5px solid var(--accent)}
+.status-tag{background:var(--tag-a);padding:7px 16px;border-radius:50px;cursor:pointer;transition:.2s}
+.status-tag:hover{transform:translateY(-2px);border:1px solid var(--accent)}
+footer{text-align:center;padding:40px 0;color:#888;font-size:14px}
+@media(max-width:768px){.input-controls{flex-direction:column}.tag{font-size:13.5px;padding:8px 14px}}
+</style>
+</head>
+<body>
+
+<div class="container">
+<header>
+    <div class="logo"><i class="fas fa-fire-alt"></i><h1>极致色情 Tag 库（682个完整版）</h1></div>
+    <div class="theme-toggle" id="themeToggle"><div class="switch"></div></div>
+</header>
+
+<div class="input-area">
+    <div class="input-controls">
+        <button class="btn" id="copyBtn">复制全部英文标签</button>
+        <button class="btn" id="clearBtn">清除全部</button>
+        <button class="btn" id="expandBtn">全部展开</button>
+        <button class="btn" id="collapseBtn">全部折叠</button>
+    </div>
+    <textarea id="promptInput" placeholder="点击下方标签即可自动添加到这里…"></textarea>
+    <div class="stats">
+        <div class="stat">已选 <span id="count">0</span> 个</div>
+        <div class="stat">字符 <span id="chars">0</span></div>
+    </div>
+    <div class="status-bar" id="statusBar"><strong>已选标签：</strong><span class="no-tags">暂无</span></div>
+</div>
+
+<div class="search-wrapper">
+    <input type="text" id="searchInput" class="search-input" placeholder="搜索标签（中英文皆可）...">
+    <i class="fas fa-search search-icon"></i>
+</div>
+
+<div class="tags-container" id="categories"></div>
+
+<footer>© 2025 极致色情 Tag 库 · 682 个完整高强度标签 · 纯本地离线永久可用</footer>
+</div>
+
+<script>
+const tagsData = {
+"动作": [
+{english: "kissing", chinese: "亲吻"},{english: "hugging", chinese: "拥抱"},{english: "touching", chinese: "触摸"},{english: "licking", chinese: "舔舐"},
+{english: "sucking", chinese: "吮吸"},{english: "biting", chinese: "咬"},{english: "spanking", chinese: "打屁股"},{english: "whipping", chinese: "鞭打"},
+{english: "thrusting", chinese: "抽插"},{english: "grinding", chinese: "摩擦"},{english: "stroking", chinese: "抚摸"},{english: "fingering", chinese: "手指插入"},
+{english: "penetrating", chinese: "插入"},{english: "ejaculating", chinese: "射精"},{english: "squirting", chinese: "喷射"},{english: "moaning", chinese: "呻吟"},
+{english: "panting", chinese: "喘息"},{english: "teasing", chinese: "挑逗"},{english: "dominating", chinese: "支配"},{english: "submitting", chinese: "顺从"},
+{english: "binding", chinese: "捆绑"},{english: "choking", chinese: "扼喉"},{english: "slapping", chinese: "拍打"},{english: "pulling hair", chinese: "拉头发"},
+{english: "scratching", chinese: "抓挠"},{english: "massaging", chinese: "按摩"},{english: "oiling", chinese: "涂油"},{english: "vibrating", chinese: "振动"},
+{english: "electro-stimulating", chinese: "电刺激"},{english: "wax play", chinese: "蜡烛游戏"},{english: "rimming", chinese: "舔肛"},
+{english: "deepthroating", chinese: "深喉"},{english: "facesitting", chinese: "脸坐"},{english: "edging", chinese: "边缘控制"},
+{english: "orgasm denial", chinese: "高潮拒绝"},{english: "forced orgasm", chinese: "强制高潮"},{english: "milking", chinese: "挤奶"},
+{english: "titfucking", chinese: "乳交"},{english: "footjob", chinese: "足交"},{english: "handjob", chinese: "手淫"},
+{english: "grinding hips", chinese: "臀部摩擦"},{english: "nibbling ears", chinese: "轻咬耳朵"},{english: "squeezing breasts", chinese: "挤压乳房"},
+{english: "pinching nipples", chinese: "捏乳头"},{english: "spreading legs", chinese: "分开双腿"},{english: "arching back", chinese: "弓起背部"},
+{english: "clawing skin", chinese: "爪挠皮肤"},{english: "whispering dirty talk", chinese: "低语脏话"},{english: "rubbing clitoris", chinese: "摩擦阴蒂"},
+{english: "pumping vigorously", chinese: "大力抽动"},{english: "anal fingering", chinese: "肛门手指插入"},{english: "prostate massage", chinese: "前列腺按摩"},
+{english: "ball sucking", chinese: "吮吸睾丸"},{english: "nipple twisting", chinese: "扭转乳头"},{english: "clit pinching", chinese: "捏阴蒂"},
+{english: "pussy slapping", chinese: "拍打阴部"},{english: "cock slapping", chinese: "拍打阴茎"},{english: "hair yanking", chinese: "猛拉头发"},
+{english: "body grinding", chinese: "身体摩擦"},{english: "tongue fucking", chinese: "舌头插入"},{english: "frottage", chinese: "阴茎摩擦"},
+{english: "dry humping", chinese: "干式抽插"},{english: "scissoring thighs", chinese: "大腿剪刀式"},{english: "ear nibbling", chinese: "啃咬耳朵"},
+{english: "neck biting", chinese: "咬脖子"},{english: "whispering obscenities", chinese: "低语淫秽话语"},{english: "spit swapping", chinese: "交换口水"},
+{english: "cum swapping", chinese: "交换精液"},{english: "body oiling", chinese: "身体涂油"},{english: "vaginal fisting", chinese: "阴道拳交"},
+{english: "anal fisting", chinese: "肛门拳交"},{english: "double fisting", chinese: "双拳交"},{english: "peg play", chinese: "假阳具游戏"},
+{english: "vibrator teasing", chinese: "振动器挑逗"},{english: "ice play", chinese: "冰块游戏"}
+],
+"表情": [
+{english: "ecstatic", chinese: "狂喜的"},{english: "pleasured", chinese: "愉悦的"},{english: "pained", chinese: "痛苦的"},{english: "surprised", chinese: "惊讶的"},
+{english: "seductive", chinese: "诱惑的"},{english: "innocent", chinese: "纯真的"},{english: "lustful", chinese: "淫荡的"},{english: "orgasmic", chinese: "高潮的"},
+{english: "blushing", chinese: "脸红的"},{english: "sweaty", chinese: "出汗的"},{english: "teary-eyed", chinese: "泪眼汪汪的"},{english: "biting lip", chinese: "咬嘴唇"},
+{english: "eyes rolled back", chinese: "眼睛后翻"},{english: "mouth open", chinese: "嘴巴张开"},{english: "tongue out", chinese: "舌头伸出"},{english: "smirking", chinese: "奸笑的"},
+{english: "frowning", chinese: "皱眉的"},{english: "grinning", chinese: "咧嘴笑的"},{english: "winking", chinese: "眨眼的"},{english: "staring intensely", chinese: "凝视的"},
+{english: "closed eyes", chinese: "闭眼的"},{english: "arched eyebrows", chinese: "眉毛上扬"},{english: "flushed face", chinese: "脸潮红"},{english: "heavy breathing", chinese: "沉重呼吸"},
+{english: "exhausted", chinese: "疲惫的"},{english: "satisfied", chinese: "满足的"},{english: "desperate", chinese: "绝望的"},{english: "eager", chinese: "渴望的"},
+{english: "playful", chinese: "调皮的"},{english: "submissive gaze", chinese: "顺从的目光"},{english: "ahegao", chinese: "阿嘿颜"},{english: "drooling", chinese: "流口水"},
+{english: "begging eyes", chinese: "乞求眼神"},{english: "defiant stare", chinese: "挑衅凝视"},{english: "overstimulated", chinese: "过度刺激"},{english: "post-orgasmic glow", chinese: "高潮后光芒"},
+{english: "shocked arousal", chinese: "震惊唤起"},{english: "mischievous smile", chinese: "调皮微笑"},{english: "pouting lips", chinese: "撅嘴"},{english: "quivering", chinese: "颤抖"},
+{english: "gasping in pleasure", chinese: "愉悦喘气"},{english: "moaning loudly", chinese: "大声呻吟"},{english: "eyes half-closed", chinese: "眼睛半闭"},{english: "trembling lips", chinese: "颤抖嘴唇"},
+{english: "sweat dripping", chinese: "汗水滴落"},{english: "body shuddering", chinese: "身体颤抖"},{english: "face contorted in ecstasy", chinese: "狂喜扭曲的脸"},{english: "whimpering", chinese: "呜咽"},
+{english: "gritting teeth", chinese: "咬牙"},{english: "flared nostrils", chinese: "鼻翼张开"},{english: "lust-glazed eyes", chinese: "欲望朦胧眼神"},{english: "quivering lips", chinese: "颤抖嘴唇"},
+{english: "sweat-drenched face", chinese: "汗水浸湿脸庞"},{english: "heaving chest", chinese: "剧烈起伏胸膛"},{english: "clenched jaw", chinese: "紧咬牙关"},{english: "flared nostrils", chinese: "鼻翼张开"},
+{english: "body arching", chinese: "身体弓起"},{english: "fingers digging", chinese: "手指嵌入"},{english: "toes curling", chinese: "脚趾蜷曲"},{english: "shuddering breath", chinese: "颤抖呼吸"},
+{english: "convulsing in pleasure", chinese: "愉悦痉挛"},{english: "tears of ecstasy", chinese: "狂喜眼泪"},{english: "slack-jawed awe", chinese: "下巴松弛惊叹"},{english: "predatory grin", chinese: "捕食者般狞笑"},
+{english: "submissive whimper", chinese: "顺从呜咽"},{english: "dominant sneer", chinese: "支配嘲笑"},{english: "overwhelmed gasp", chinese: "压倒性喘息"},{english: "begging pout", chinese: "乞求撅嘴"},
+{english: "satisfied smirk", chinese: "满足奸笑"},{english: "exhausted collapse", chinese: "疲惫崩溃"},{english: "intense stare-down", chinese: "激烈凝视"},{english: "playful wink", chinese: "调皮眨眼"},
+{english: "feral growl", chinese: "野性咆哮"},{english: "blissful sigh", chinese: "幸福叹息"},{english: "tormented moan", chinese: "折磨呻吟"}
+],
+"角度/视角": [
+{english: "close-up", chinese: "特写"},{english: "wide shot", chinese: "广角"},{english: "overhead view", chinese: "俯视"},{english: "low angle", chinese: "低角度"},
+{english: "side profile", chinese: "侧面"},{english: "rear view", chinese: "后视"},{english: "front view", chinese: "正视"},{english: "pov", chinese: "第一人称视角"},
+{english: "voyeur", chinese: "偷窥视角"},{english: "mirror reflection", chinese: "镜子反射"},{english: "underwater", chinese: "水下"},{english: "through window", chinese: "透过窗户"},
+{english: "fisheye lens", chinese: "鱼眼镜头"},{english: "zoom in", chinese: "放大"},{english: "panoramic", chinese: "全景"},{english: "dutch angle", chinese: "倾斜角度"},
+{english: "extreme close-up", chinese: "极端特写"},{english: "aerial view", chinese: "空中视角"},{english: "ground level", chinese: "地面水平"},{english: "symmetrical", chinese: "对称的"},
+{english: "asymmetrical", chinese: "不对称的"},{english: "backlit", chinese: "逆光"},{english: "silhouette", chinese: "剪影"},{english: "depth of field", chinese: "景深"},
+{english: "blurred background", chinese: "模糊背景"},{english: "sharp focus", chinese: "锐利焦点"},{english: "wide angle distortion", chinese: "广角扭曲"},{english: "telephoto compression", chinese: "长焦压缩"},
+{english: "multi-angle", chinese: "多角度"},{english: "split screen", chinese: "分屏"},{english: "crotch shot", chinese: "裆部镜头"},{english: "upskirt", chinese: "裙底风光"},
+{english: "downblouse", chinese: "低领窥视"},{english: "over-the-shoulder", chinese: "肩后视角"},{english: "worm's eye view", chinese: "虫眼视角"},{english: "bird's eye view", chinese: "鸟瞰"},
+{english: "dynamic motion blur", chinese: "动态运动模糊"},{english: "long exposure", chinese: "长曝光"},{english: "time-lapse", chinese: "延时摄影"},{english: "360 degree view", chinese: "360度视角"},
+{english: "intimate close-up on genitals", chinese: "生殖器亲密特写"},{english: "from behind penetration view", chinese: "后入插入视角"},{english: "overhead orgasm shot", chinese: "俯视高潮镜头"},
+{english: "side view of thrusting", chinese: "侧视抽插"},{english: "pov blowjob", chinese: "第一人称口交"},{english: "mirror self-view", chinese: "镜子自视"},
+{english: "hidden camera angle", chinese: "隐藏摄像头角度"},{english: "extreme low angle upshot", chinese: "极端低角度仰拍"},{english: "facial expression focus", chinese: "面部表情焦点"},
+{english: "body fluid close-up", chinese: "体液特写"},{english: "interlocked bodies panorama", chinese: "交缠身体全景"},{english: "shadow play silhouette", chinese: "影子游戏剪影"},
+{english: "reflected in water", chinese: "水面反射"},{english: "through lace curtain", chinese: "透过蕾丝窗帘"},{english: "fisheye distortion on curves", chinese: "鱼眼扭曲曲线"},
+{english: "anal close-up", chinese: "肛门特写"},{english: "cumshot pov", chinese: "射精第一人称"},{english: "reverse pov", chinese: "反向第一人称"},
+{english: "side penetration view", chinese: "侧面插入视角"},{english: "overhead bondage", chinese: "俯视捆绑"},{english: "low angle tease", chinese: "低角度挑逗"},
+{english: "mirror anal view", chinese: "镜子肛交视角"},{english: "voyeur hidden cam", chinese: "偷窥隐藏摄像头"},{english: "360 orgasm spin", chinese: "360度高潮旋转"},
+{english: "extreme zoom on clit", chinese: "极端放大阴蒂"},{english: "backlit cum silhouette", chinese: "逆光精液剪影"},{english: "distorted fish-eye fuck", chinese: "鱼眼扭曲性交"},
+{english: "multi-cam orgy", chinese: "多摄像头狂欢"},{english: "drone aerial sex", chinese: "无人机空中性爱"},{english: "macro nipple focus", chinese: "宏观乳头焦点"},
+{english: "thermal heat vision", chinese: "热成像视野"},{english: "x-ray penetration", chinese: "X光插入"},{english: "slow-mo ejaculation", chinese: "慢动作射精"},
+{english: "time-lapse climax", chinese: "延时高潮"},{english: "split-screen dp", chinese: "分屏双插"},{english: "vr immersive view", chinese: "VR沉浸视角"},
+{english: "endoscopic internal", chinese: "内窥镜内部"},{english: "holographic projection", chinese: "全息投影"},{english: "night vision stealth", chinese: "夜视隐秘"},
+{english: "surveillance cam angle", chinese: "监控摄像头角度"}
+],
+"体位": [
+{english: "missionary", chinese: "传教士体位"},{english: "doggy style", chinese: "后入式"},{english: "cowgirl", chinese: "女上位"},{english: "reverse cowgirl", chinese: "反向女上位"},
+{english: "spooning", chinese: "勺子式"},{english: "standing", chinese: "站立式"},{english: "69", chinese: "69式"},{english: "lotus", chinese: "莲花式"},
+{english: "pile driver", chinese: "打桩机式"},{english: "butterfly", chinese: "蝴蝶式"},{english: "wheelbarrow", chinese: "手推车式"},{english: "pretzel", chinese: "椒盐卷饼式"},
+{english: "scissoring", chinese: "剪刀式"},{english: "face sitting", chinese: "脸坐式"},{english: "anal", chinese: "肛交体位"},{english: "double penetration", chinese: "双重插入"},
+{english: "threesome positions", chinese: "三人组体位"},{english: "group sex", chinese: "群交体位"},{english: "bent over", chinese: "弯腰式"},{english: "legs up", chinese: "腿上举"},
+{english: "side by side", chinese: "并排式"},{english: "kneeling", chinese: "跪姿"},{english: "straddling", chinese: "跨坐"},{english: "wrapped legs", chinese: "腿缠绕"},
+{english: "acrobatic", chinese: "杂技式"},{english: "yoga-inspired", chinese: "瑜伽启发"},{english: "bondage positions", chinese: "捆绑体位"},{english: "suspended", chinese: "悬挂式"},
+{english: "wall-supported", chinese: "墙壁支撑"},{english: "furniture-assisted", chinese: "家具辅助"},{english: "reverse piledriver", chinese: "反向打桩机"},{english: "amazon position", chinese: "亚马逊体位"},
+{english: "standing 69", chinese: "站立69"},{english: "eiffel tower", chinese: "埃菲尔铁塔式"},{english: "spit roast", chinese: "烤肉串式"},{english: "bridge position", chinese: "桥式"},
+{english: "crab walk", chinese: "蟹行式"},{english: "helicopter", chinese: "直升机式"},{english: "seated scissors", chinese: "坐式剪刀"},{english: "tantric yab-yum", chinese: "密宗合一式"},
+{english: "standing anal", chinese: "站立肛交"},{english: "reverse piledriver", chinese: "反向打桩机"},{english: "suspended congress", chinese: "悬挂国会式"},
+{english: "wall bang", chinese: "墙壁撞击"},{english: "lap dance fuck", chinese: "膝上舞性交"},{english: "69 anal", chinese: "69肛交"},{english: "double cowgirl", chinese: "双女上位"},
+{english: "train position", chinese: "火车体位"},{english: "daisy chain orgy", chinese: "菊花链狂欢"},{english: "acrobat flip", chinese: "杂技翻转"},{english: "yoga downward dog", chinese: "瑜伽下犬式"},
+{english: "ballet dancer", chinese: "芭蕾舞者式"},{english: "seashell position", chinese: "贝壳体位"},{english: "valedictorian", chinese: "优等生体位"},{english: "pretzel dip", chinese: "椒盐卷浸式"},
+{english: "magic mountain", chinese: "魔力山体位"},{english: "happy baby", chinese: "快乐婴儿式"},{english: "standing wheelbarrow", chinese: "站立手推车"},{english: "corkscrew", chinese: "螺旋钻式"},
+{english: "golden arch", chinese: "金拱门式"},{english: "pinball wizard", chinese: "弹球巫师式"},{english: "upstanding citizen", chinese: "站立公民式"},{english: "lazy man", chinese: "懒人式"},
+{english: "david copperfield", chinese: "大卫科波菲尔式"},{english: "helicopter anal", chinese: "直升机肛交"}
+],
+"身体部位": [
+{english: "breasts", chinese: "乳房"},{english: "nipples", chinese: "乳头"},{english: "ass", chinese: "臀部"},{english: "pussy", chinese: "阴部"},
+{english: "cock", chinese: "阴茎"},{english: "balls", chinese: "睾丸"},{english: "clitoris", chinese: "阴蒂"},{english: "labia", chinese: "阴唇"},
+{english: "anus", chinese: "肛门"},{english: "thighs", chinese: "大腿"},{english: "hips", chinese: "臀围"},{english: "waist", chinese: "腰部"},
+{english: "neck", chinese: "脖子"},{english: "lips", chinese: "嘴唇"},{english: "tongue", chinese: "舌头"},{english: "hands", chinese: "手"},
+{english: "feet", chinese: "脚"},{english: "toes", chinese: "脚趾"},{english: "fingers", chinese: "手指"},{english: "navel", chinese: "肚脐"},
+{english: "back", chinese: "背部"},{english: "shoulders", chinese: "肩膀"},{english: "arms", chinese: "手臂"},{english: "legs", chinese: "腿"},
+{english: "pubic hair", chinese: "阴毛"},{english: "piercings", chinese: "穿孔"},{english: "tattoos", chinese: "纹身"},{english: "scars", chinese: "疤痕"},
+{english: "muscles", chinese: "肌肉"},{english: "curves", chinese: "曲线"},{english: "erect nipples", chinese: "勃起乳头"},{english: "swollen labia", chinese: "肿胀阴唇"},
+{english: "veiny cock", chinese: "青筋阴茎"},{english: "inner thighs", chinese: "大腿内侧"},{english: "collarbone", chinese: "锁骨"},{english: "earlobes", chinese: "耳垂"},
+{english: "wrists", chinese: "手腕"},{english: "ankles", chinese: "脚踝"},{english: "abs", chinese: "腹肌"},{english: "glutes", chinese: "臀肌"},
+{english: "erect clitoris", chinese: "勃起阴蒂"},{english: "swollen vulva", chinese: "肿胀外阴"},{english: "precum dripping", chinese: "前列腺液滴落"},
+{english: "engorged labia", chinese: "充血阴唇"},{english: "throbbing cockhead", chinese: "跳动龟头"},{english: "sensitive perineum", chinese: "敏感会阴"},
+{english: "pierced nipples", chinese: "穿孔乳头"},{english: "tattooed pussy", chinese: "纹身阴部"},{english: "shaved balls", chinese: "剃毛睾丸"},
+{english: "curved shaft", chinese: "弯曲茎身"},{english: "freckled breasts", chinese: "雀斑乳房"},{english: "dimpled ass", chinese: "酒窝臀部"},
+{english: "toned abs", chinese: "紧实腹肌"},{english: "veiny forearms", chinese: "青筋前臂"},{english: "plump labia majora", chinese: "丰满大阴唇"},
+{english: "hooded clitoris", chinese: "包皮阴蒂"},{english: "ridged dildo", chinese: "脊状假阳具"},{english: "beaded anus", chinese: "珠状肛门"},
+{english: "sweaty cleavage", chinese: "汗湿乳沟"},{english: "oily thighs", chinese: "油腻大腿"},{english: "bruised knees", chinese: "瘀伤膝盖"},
+{english: "reddened ass cheeks", chinese: "发红臀颊"},{english: "stretched sphincter", chinese: "拉伸括约肌"},{english: "puffy areolas", chinese: "肿胀乳晕"},
+{english: "engorged veins", chinese: "充血静脉"}
+],
+"服装": [
+{english: "lingerie", chinese: "内衣"},{english: "stockings", chinese: "丝袜"},{english: "garter belt", chinese: "吊袜带"},{english: "high heels", chinese: "高跟鞋"},
+{english: "thong", chinese: "丁字裤"},{english: "bra", chinese: "胸罩"},{english: "panties", chinese: "内裤"},{english: "corset", chinese: "紧身胸衣"},
+{english: "fishnet", chinese: "鱼网袜"},{english: "latex", chinese: "乳胶"},{english: "leather", chinese: "皮革"},{english: "uniform", chinese: "制服"},
+{english: "schoolgirl outfit", chinese: "女学生装"},{english: "nurse costume", chinese: "护士装"},{english: "maid dress", chinese: "女仆装"},{english: "bikini", chinese: "比基尼"},
+{english: "swimsuit", chinese: "泳装"},{english: "nude", chinese: "裸体"},{english: "partially clothed", chinese: "半裸"},{english: "torn clothes", chinese: "撕裂衣服"},
+{english: "wet clothes", chinese: "湿衣服"},{english: "see-through", chinese: "透明"},{english: "collar", chinese: "项圈"},{english: "cuffs", chinese: "手铐"},
+{english: "harness", chinese: "束缚带"},{english: "mask", chinese: "面具"},{english: "gloves", chinese: "手套"},{english: "boots", chinese: "靴子"},
+{english: "jewelry", chinese: "珠宝"},{english: "accessories", chinese: "配饰"},{english: "crotchless panties", chinese: "开裆内裤"},{english: "nipple pasties", chinese: "乳贴"},
+{english: "body stocking", chinese: "全身丝袜"},{english: "chaps", chinese: "皮裤"},{english: "babydoll", chinese: "娃娃装"},{english: "teddy", chinese: "连体内衣"},
+{english: "g-string", chinese: "G弦裤"},{english: "suspenders", chinese: "吊带"},{english: "blindfold", chinese: "眼罩"},{english: "gag", chinese: "口塞"},
+{english: "crotchless bodysuit", chinese: "开裆连体衣"},{english: "nipple clamps", chinese: "乳头夹"},{english: "leather harness", chinese: "皮革束带"},
+{english: "fishnet bodystocking", chinese: "鱼网全身袜"},{english: "pvc catsuit", chinese: "PVC猫装"},{english: "rubber gloves", chinese: "橡胶手套"},
+{english: "ball gag", chinese: "球形口塞"},{english: "chastity belt", chinese: "贞操带"},{english: "collar and leash", chinese: "项圈和链子"},
+{english: "ankle cuffs", chinese: "脚踝铐"},{english: "thigh-high boots", chinese: "过膝靴"},{english: "wet look leggings", chinese: "湿看紧身裤"},
+{english: "sheer negligee", chinese: "透明睡袍"},{english: "edible underwear", chinese: "可食用内衣"},{english: "strap-on harness", chinese: "假阳具束带"},
+{english: "pasties and thong", chinese: "乳贴和丁字裤"},{english: "vinyl skirt", chinese: "乙烯基裙"},{english: "lace choker", chinese: "蕾丝颈圈"},
+{english: "silk blindfold", chinese: "丝绸眼罩"},{english: "feather boa", chinese: "羽毛围巾"},{english: "body chain", chinese: "身体链"},
+{english: "nipple tassels", chinese: "乳头流苏"},{english: "caged bra", chinese: "笼式胸罩"},{english: "harness bra", chinese: "束带胸罩"},
+{english: "studded collar", chinese: "铆钉项圈"}
+],
+"场景": [
+{english: "bedroom", chinese: "卧室"},{english: "bathroom", chinese: "浴室"},{english: "shower", chinese: "淋浴"},{english: "kitchen", chinese: "厨房"},
+{english: "living room", chinese: "客厅"},{english: "office", chinese: "办公室"},{english: "dungeon", chinese: "地牢"},{english: "beach", chinese: "海滩"},
+{english: "forest", chinese: "森林"},{english: "car", chinese: "汽车"},{english: "public place", chinese: "公共场所"},{english: "hotel room", chinese: "酒店房间"},
+{english: "poolside", chinese: "泳池边"},{english: "gym", chinese: "健身房"},{english: "club", chinese: "俱乐部"},{english: "alleyway", chinese: "小巷"},
+{english: "rooftop", chinese: "屋顶"},{english: "elevator", chinese: "电梯"},{english: "library", chinese: "图书馆"},{english: "classroom", chinese: "教室"},
+{english: "hospital", chinese: "医院"},{english: "prison", chinese: "监狱"},{english: "fantasy world", chinese: "幻想世界"},{english: "space station", chinese: "太空站"},
+{english: "underwater", chinese: "水下"},{english: "desert", chinese: "沙漠"},{english: "mountain", chinese: "山脉"},{english: "rainy night", chinese: "雨夜"},
+{english: "candlelit", chinese: "烛光"},{english: "dimly lit", chinese: "昏暗照明"},{english: "strip club", chinese: "脱衣俱乐部"},{english: "sauna", chinese: "桑拿"},
+{english: "hot tub", chinese: "热水浴缸"},{english: "locker room", chinese: "更衣室"},{english: "backstage", chinese: "后台"},{english: "abandoned warehouse", chinese: "废弃仓库"},
+{english: "luxury yacht", chinese: "豪华游艇"},{english: "private jet", chinese: "私人飞机"},{english: "medieval castle", chinese: "中世纪城堡"},{english: "post-apocalyptic ruin", chinese: "后末日废墟"},
+{english: "swingers party", chinese: "交换伴侣派对"},{english: "bdsm club", chinese: "BDSM俱乐部"},{english: "glory hole booth", chinese: "荣耀洞隔间"},
+{english: "sex dungeon", chinese: "性爱地牢"},{english: "nude beach", chinese: "裸体海滩"},{english: "orgy room", chinese: "狂欢室"},
+{english: "backseat car sex", chinese: "后座车震"},{english: "public restroom stall", chinese: "公共厕所隔间"},{english: "office desk", chinese: "办公室桌"},
+{english: "elevator quickie", chinese: "电梯快速性爱"},{english: "forest clearing", chinese: "森林空地"},{english: "hot spring bath", chinese: "温泉浴"},
+{english: "yacht deck", chinese: "游艇甲板"},{english: "abandoned factory", chinese: "废弃工厂"},{english: "rooftop terrace", chinese: "屋顶露台"},
+{english: "movie theater backrow", chinese: "电影院后排"},{english: "gym shower room", chinese: "健身房淋浴间"},{english: "library stacks", chinese: "图书馆书架"},
+{english: "wedding reception", chinese: "婚礼招待会"},{english: "camping tent", chinese: "露营帐篷"},{english: "strip club vip", chinese: "脱衣俱乐部VIP"},
+{english: "massage parlor", chinese: "按摩院"},{english: "sauna steam room", chinese: "桑拿蒸汽室"},{english: "pool underwater", chinese: "泳池水下"},
+{english: "airplane bathroom", chinese: "飞机浴室"}
+],
+"恋物癖": [
+{english: "bdsm", chinese: "BDSM"},{english: "bondage", chinese: "捆绑"},{english: "domination", chinese: "支配"},{english: "submission", chinese: "顺从"},
+{english: "foot fetish", chinese: "恋足"},{english: "latex fetish", chinese: "乳胶恋"},{english: "roleplay", chinese: "角色扮演"},{english: "voyeurism", chinese: "偷窥癖"},
+{english: "exhibitionism", chinese: "暴露癖"},{english: "watersports", chinese: "尿戏"},{english: "impact play", chinese: "冲击游戏"},{english: "pet play", chinese: "宠物游戏"},
+{english: "age play", chinese: "年龄游戏"},{english: "medical play", chinese: "医疗游戏"},{english: "breath play", chinese: "呼吸控制"},{english: "wax play", chinese: "蜡烛游戏"},
+{english: "knife play", chinese: "刀戏"},{english: "electro play", chinese: "电戏"},{english: "cuckolding", chinese: "绿帽"},{english: "swinging", chinese: "交换伴侣"},
+{english: "group sex", chinese: "群交"},{english: "orgy", chinese: "狂欢"},{english: "tentacles", chinese: "触手"},{english: "monster sex", chinese: "怪物性爱"},
+{english: "furry", chinese: "毛茸茸"},{english: "inflation", chinese: "膨胀"},{english: "vore", chinese: "吞食"},{english: "transformation", chinese: "变身"},
+{english: "hypnosis", chinese: "催眠"},{english: "mind control", chinese: "心灵控制"},{english: "chastity", chinese: "贞操"},{english: "sensory deprivation", chinese: "感官剥夺"},
+{english: "tickling", chinese: "挠痒"},{english: "food play", chinese: "食物游戏"},{english: "sploshing", chinese: "泥浆游戏"},{english: "giantess", chinese: "女巨人"},
+{english: "macrophilia", chinese: "巨物恋"},{english: "dollification", chinese: "娃娃化"},{english: "pony play", chinese: "小马游戏"},{english: "scat", chinese: "粪戏"},
+{english: "ball busting", chinese: "睾丸破坏"},{english: "cbt", chinese: "阴茎睾丸折磨"},{english: "sounding", chinese: "尿道探针"},{english: "needle play", chinese: "针刺游戏"},
+{english: "fire play", chinese: "火游戏"},{english: "blood play", chinese: "血游戏"},{english: "puppy play", chinese: "小狗游戏"},{english: "pony play", chinese: "小马游戏"},
+{english: "age regression", chinese: "年龄回归"},{english: "diaper fetish", chinese: "尿布恋"},{english: "enema play", chinese: "灌肠游戏"},{english: "fart fetish", chinese: "放屁恋"},
+{english: "crush fetish", chinese: "碾压恋"},{english: "giantess growth", chinese: "女巨人成长"},{english: "microphilia", chinese: "微小恋"},{english: "hypno dom", chinese: "催眠支配"},
+{english: "financial domination", chinese: "财务支配"},{english: "sissy training", chinese: "娘炮训练"},{english: "forced feminization", chinese: "强制女性化"},{english: "cuckquean", chinese: "女绿帽"},
+{english: "hotwifing", chinese: "辣妻分享"},{english: "race play", chinese: "种族游戏"},{english: "blasphemy fetish", chinese: "亵渎恋"},{english: "objectification", chinese: "物体化"},
+{english: "human furniture", chinese: "人体家具"}
+],
+"互动": [
+{english: "solo", chinese: "独奏"},{english: "couple", chinese: "情侣"},{english: "threesome", chinese: "三人组"},{english: "foursome", chinese: "四人组"},
+{english: "gangbang", chinese: "轮奸"},{english: "orgy", chinese: "群交狂欢"},{english: "lesbian", chinese: "女同"},{english: "gay", chinese: "男同"},
+{english: "bisexual", chinese: "双性恋"},{english: "heterosexual", chinese: "异性恋"},{english: "oral sex", chinese: "口交"},{english: "anal sex", chinese: "肛交"},
+{english: "vaginal sex", chinese: "阴道交"},{english: "double penetration", chinese: "双插"},{english: "rimming", chinese: "舔肛"},{english: "fisting", chinese: "拳交"},
+{english: "pegging", chinese: "女性用假阳具插入男性"},{english: "strap-on", chinese: "假阳具"},{english: "toy play", chinese: "玩具游戏"},{english: "vibrator use", chinese: "振动器使用"},
+{english: "dildo insertion", chinese: "假阳具插入"},{english: "butt plug", chinese: "肛塞"},{english: "beads", chinese: "珠子"},{english: "machine sex", chinese: "机器性爱"},
+{english: "public sex", chinese: "公共性爱"},{english: "voyeur watching", chinese: "偷窥观看"},{english: "exhibitionist display", chinese: "暴露展示"},{english: "power exchange", chinese: "权力交换"},
+{english: "aftercare", chinese: "后续护理"},{english: "cuddling", chinese: "拥抱"},{english: "bukkake", chinese: "颜射群"},{english: "creampie", chinese: "内射"},
+{english: "facials", chinese: "面部射精"},{english: "swallowing", chinese: "吞咽"},{english: "spitroast", chinese: "前后夹击"},{english: "daisy chain", chinese: "菊花链"},
+{english: "cunnilingus", chinese: "舔阴"},{english: "anilingus", chinese: "舔肛"},{english: "tribadism", chinese: "摩擦阴部"},{english: "mutual masturbation", chinese: "相互自慰"},
+{english: "triple penetration", chinese: "三重插入"},{english: "airtight", chinese: "气密式"},{english: "dvda", chinese: "双阴双肛"},
+{english: "gangbang creampie", chinese: "轮奸内射"},{english: "bukkake circle", chinese: "颜射圈"},{english: "snowballing", chinese: "滚雪球式"},
+{english: "felching", chinese: "吮吸内射"},{english: "golden shower", chinese: "金色淋浴"},{english: "roman shower", chinese: "罗马淋浴"},
+{english: "pegging train", chinese: "假阳具火车"},{english: "strap-on gangbang", chinese: "假阳具轮奸"},{english: "sybian riding", chinese: "Sybian骑乘"},
+{english: "fucking machine", chinese: "性爱机器"},{english: "violet wand", chinese: "紫色魔杖"},{english: "tens unit", chinese: "TENS设备"},
+{english: "vacuum bed", chinese: "真空床"},{english: "suspension bondage", chinese: "悬挂捆绑"},{english: "shibari rope", chinese: "绳艺捆绑"},
+{english: "wax dripping", chinese: "蜡滴落"},{english: "ice cube insertion", chinese: "冰块插入"},{english: "food insertion", chinese: "食物插入"},
+{english: "object insertion", chinese: "物体插入"},{english: "double ended dildo", chinese: "双头假阳具"},{english: "mutual rimming", chinese: "相互舔肛"},
+{english: "group masturbation", chinese: "集体自慰"}
+],
+"情绪/心情": [
+{english: "passionate", chinese: "激情的"},{english: "romantic", chinese: "浪漫的"},{english: "rough", chinese: "粗暴的"},{english: "gentle", chinese: "温柔的"},
+{english: "intense", chinese: "强烈的"},{english: "playful", chinese: "玩闹的"},{english: "dark", chinese: "黑暗的"},{english: "forbidden", chinese: "禁忌的"},
+{english: "taboo", chinese: "禁忌的"},{english: "sensual", chinese: "感官的"},{english: "erotic", chinese: "色情的"},{english: "lustful", chinese: "充满欲望的"},
+{english: "desperate", chinese: "绝望的"},{english: "euphoric", chinese: "欣快的"},{english: "overwhelmed", chinese: "压倒性的"},{english: "submissive", chinese: "顺从的"},
+{english: "dominant", chinese: "支配的"},{english: "teasing", chinese: "挑逗的"},{english: "begging", chinese: "乞求的"},{english: "commanding", chinese: "命令的"},
+{english: "humiliated", chinese: "羞辱的"},{english: "empowered", chinese: "赋权的"},{english: "relaxed", chinese: "放松的"},{english: "tense", chinese: "紧张的"},
+{english: "ecstatic", chinese: "狂喜的"},{english: "melancholic", chinese: "忧郁的"},{english: "mysterious", chinese: "神秘的"},{english: "adventurous", chinese: "冒险的"},
+{english: "nostalgic", chinese: "怀旧的"},{english: "wild", chinese: "狂野的"},{english: "feral", chinese: "野性的"},{english: "obsessive", chinese: "痴迷的"},
+{english: "jealous", chinese: "嫉妒的"},{english: "vengeful", chinese: "复仇的"},{english: "tender", chinese: "温柔的"},{english: "yearning", chinese: "渴望的"},
+{english: "blissful", chinese: "幸福的"},{english: "tormented", chinese: "折磨的"},{english: "enraptured", chinese: "着迷的"},{english: "savage", chinese: "野蛮的"},
+{english: "depraved hunger", chinese: "堕落饥渴"},{english: "insatiable lust", chinese: "贪得无厌欲望"},{english: "masochistic bliss", chinese: "受虐狂喜"},
+{english: "sadistic glee", chinese: "施虐狂欢"},{english: "forbidden thrill", chinese: "禁忌刺激"},{english: "guilty pleasure", chinese: "罪恶快感"},
+{english: "animalistic rage", chinese: "兽性愤怒"},{english: "nymphomaniac frenzy", chinese: "色情狂热"},{english: "voyeuristic excitement", chinese: "偷窥兴奋"},
+{english: "exhibitionist rush", chinese: "暴露冲动"},{english: "humiliation high", chinese: "羞辱高潮"},{english: "dominance power", chinese: "支配力量"},
+{english: "submission surrender", chinese: "顺从投降"},{english: "orgasmic overload", chinese: "高潮超载"},{english: "post-coital melancholy", chinese: "性后忧郁"},
+{english: "anticipatory anxiety", chinese: "期待焦虑"},{english: "ecstatic release", chinese: "狂喜释放"},{english: "tormented desire", chinese: "折磨欲望"},
+{english: "vengeful fuck", chinese: "复仇性交"},{english: "jealous possession", chinese: "嫉妒占有"},{english: "obsessive craving", chinese: "痴迷渴望"},
+{english: "feral instinct", chinese: "野性本能"},{english: "blissful agony", chinese: "幸福痛苦"},{english: "savage conquest", chinese: "野蛮征服"},
+{english: "enraptured submission", chinese: "着迷顺从"}
+],
+"聚焦部位": [
+{english: "extreme close-up pussy", chinese: "阴户极端特写"},{english: "spread labia close-up", chinese: "掰开阴唇特写"},{english: "clitoris focus", chinese: "阴蒂极近特写"},
+{english: "dripping wet pussy close-up", chinese: "湿润滴水阴户特写"},{english: "gaping pussy after sex", chinese: "性交后张开阴户"},{english: "pussy juice dripping", chinese: "淫水滴落特写"},
+{english: "erect cock close-up", chinese: "勃起阴茎特写"},{english: "throbbing cockhead focus", chinese: "跳动龟头极近特写"},{english: "precum leaking close-up", chinese: "前列腺液溢出特写"},
+{english: "veiny shaft macro", chinese: "青筋茎身宏观特写"},{english: "cock ejaculating close-up", chinese: "阴茎射精特写"},{english: "cum on clit close-up", chinese: "精液覆盖阴蒂特写"},
+{english: "creampie dripping close-up", chinese: "内射流出特写"},{english: "anal close-up", chinese: "肛门极近特写"},{english: "gaping asshole focus", chinese: "肛门张开特写"},
+{english: "nipples extreme close-up", chinese: "乳头极端特写"},{english: "erect nipple macro", chinese: "勃起乳头特写"},{english: "pierced nipple close-up", chinese: "乳头穿环特写"},
+{english: "tongue out ahegao focus", chinese: "吐舌阿嘿颜特写"},{english: "tears streaming close-up", chinese: "泪水流淌特写"},{english: "drooling mouth close-up", chinese: "流口水特写"},
+{english: "sweat dripping cleavage", chinese: "汗水滴落乳沟特写"},{english: "balls close-up", chinese: "睾丸特写"},{english: "spread anus close-up", chinese: "掰开肛门特写"},
+{english: "fingering pussy close-up", chinese: "手指插入阴户特写"},{english: "dildo insertion close-up", chinese: "假阳具插入特写"},{english: "vibrator on clit focus", chinese: "振动器贴阴蒂特写"},
+{english: "squirting orgasm close-up", chinese: "潮吹高潮特写"},{english: "pussy contraction close-up", chinese: "阴户收缩特写"},{english: "cock entering pussy close-up", chinese: "阴茎进入阴户特写"},
+{english: "anal penetration close-up", chinese: "肛交插入特写"},{english: "double penetration close-up", chinese: "双插特写"},{english: "cumshot on tongue close-up", chinese: "舌头接射精特写"},
+{english: "swallowing cum close-up", chinese: "吞精特写"},{english: "deepthroat bulge close-up", chinese: "深喉喉部凸起特写"},{english: "feet soles close-up", chinese: "脚底特写"},
+{english: "toes curling orgasm", chinese: "高潮脚趾蜷缩特写"},{english: "armpit close-up", chinese: "腋下特写"},{english: "navel close-up", chinese: "肚脐特写"},
+{english: "back dimples close-up", chinese: "腰窝特写"},{english: "collarbone sweat close-up", chinese: "锁骨汗水特写"},{english: "inner thigh hickey close-up", chinese: "大腿内侧吻痕特写"},
+{english: "reddened ass cheek close-up", chinese: "发红臀瓣特写"},{english: "bruised knees close-up", chinese: "膝盖瘀青特写"},{english: "stretched labia close-up", chinese: "拉伸阴唇特写"},
+{english: "pulsating anus close-up", chinese: "脉动肛门特写"},{english: "cock ring constriction", chinese: "阴茎环勒紧特写"},{english: "chastity cage close-up", chinese: "贞操笼特写"},
+{english: "nipple clamp close-up", chinese: "乳头夹特写"},{english: "cum covered face close-up", chinese: "满脸精液特写"}
+]
+};
+
+const input = document.getElementById('promptInput');
+const statusBar = document.getElementById('statusBar');
+let selected = [];
+
+function render(){
+    const c = document.getElementById('categories');
+    c.innerHTML = '';
+    Object.keys(tagsData).forEach(cat => {
+        const div = document.createElement('div'); div.className = 'tag-category';
+        const header = document.createElement('div'); header.className = 'category-header';
+        header.innerHTML = `${cat} (${tagsData[cat].length})<i class="fas fa-chevron-right"></i>`;
+        header.onclick = () => header.classList.toggle('active');
+        div.appendChild(header);
+
+        const content = document.createElement('div'); content.className = 'subcategory-container';
+        const list = document.createElement('div'); list.className = 'tag-list';
+        tagsData[cat].forEach(t => {
+            const tag = document.createElement('div'); tag.className = 'tag';
+            tag.textContent = t.chinese;
+            tag.dataset.en = t.english;
+            tag.title = t.english;
+            tag.onclick = () => {
+                tag.classList.toggle('active');
+                if(tag.classList.contains('active')) selected.push(t.english);
+                else selected = selected.filter(x => x !== t.english);
+                update();
+            };
+            list.appendChild(tag);
+        });
+        content.appendChild(list); div.appendChild(content); c.appendChild(div);
+    });
+}
+render();
+
+function update(){
+    const text = selected.join(', ');
+    input.value = text;
+    document.getElementById('count').textContent = selected.length;
+    document.getElementById('chars').textContent = text.length;
+    statusBar.innerHTML = '<strong>已选标签：</strong> ';
+    if(selected.length===0) statusBar.innerHTML += '<span class="no-tags">暂无标签</span>';
+    else selected.forEach(en => {
+        const s = document.createElement('span'); s.className='status-tag';
+        s.textContent = en;
+        s.onclick = () => {
+            selected = selected.filter(x=>x!==en);
+            update();
+            document.querySelectorAll(`.tag[data-en="${en}"]`).forEach(t=>t.classList.remove('active'));
+        };
+        statusBar.appendChild(s);
+    });
+}
+
+document.getElementById('copyBtn').onclick = () => { navigator.clipboard.writeText(input.value); alert('已复制全部英文标签！'); };
+document.getElementById('clearBtn').onclick = () => { selected=[]; update(); document.querySelectorAll('.tag.active').forEach(t=>t.classList.remove('active')); };
+document.getElementById('expandBtn').onclick = () => document.querySelectorAll('.category-header').forEach(h=>h.classList.add('active'));
+document.getElementById('collapseBtn').onclick = () => document.querySelectorAll('.category-header').forEach(h=>h.classList.remove('active'));
+
+let timer;
+document.getElementById('searchInput').addEventListener('input', e => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+        const q = e.target.value.toLowerCase();
+        document.querySelectorAll('.tag').forEach(t => {
+            const txt = (t.textContent + t.dataset.en).toLowerCase();
+            t.style.display = txt.includes(q) ? '' : 'none';
+        });
+    }, 200);
+});
+
+document.getElementById('themeToggle').onclick = () => {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('dark', document.body.classList.contains('dark-mode'));
+};
+if(localStorage.getItem('dark')==='true') document.body.classList.add('dark-mode');
+
+update();
+</script>
+</body>
+</html>
